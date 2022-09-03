@@ -1,1 +1,1 @@
-I compile the exercise according to the Chapter
+I compile the notes & exercise according to the Chapter
