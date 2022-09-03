@@ -1,0 +1,54 @@
+PROC REG < options > ;
+< label: > MODEL dependents=<regressors></ options > ;
+BY variables ;
+FREQ variable ;
+ID variables ;
+VAR variables ;
+WEIGHT variable ;
+
+ADD variables ;
+DELETE variables ;
+<< label:> > MTEST <<equation, : : : ,equation><> </ options> > ;
+OUTPUT < OUT=SAS-data-set > > keyword=names
+< keyword=names> > ;
+PAINT <condition j ALLOBS >
+< / options> | <> j < STATUS | UNDO >;
+PLOT < yvariable*xvariable> <> <=symbol>>
+< yvariable*xvariable> <> <=symbol> <>> </ options> > ;
+PRINT << <options> < > < ANOVA > <  MODELDATA >> ;
+REFIT;
+RESTRICT equation, : : : ,equation ;
+REWEIGHT < condition | j ALLOBS > 
+<< / options> | < > j < STATUS | UNDO >> ;
+<< label:> > TEST equation,<< ….,equation> <> </ option >;
+
+
+EXPLAINATION:
+
+You can specify the following statements with the REG procedure in addition to the
+PROC REG statement:
+
+ADD adds independent variables to the regression model.
+BY specifies variables to define subgroups for the analysis.
+DELETE deletes independent variables from the regression model.
+FREQ specifies a frequency variable.
+ID names a variable to identify observations in the tables.
+MODEL specifies the dependent and independent variables in the regression
+model, requests a model selection method, displays predicted
+values, and provides details on the estimates (according to which
+options are selected).
+MTEST performs multivariate tests across multiple dependent variables.
+OUTPUT creates an output data set and names the variables to contain predicted
+values, residuals, and other diagnostic statistics.
+PAINT paints points in scatter plots.
+PLOT generates scatter plots.
+PRINT displays information about the model and can reset options.
+REFIT refits the model.
+RESTRICT places linear equality restrictions on the parameter estimates.
+REWEIGHT excludes specific observations from analysis or changes the
+weights of observations used.
+TEST performs an F test on linear functions of the parameters.
+VAR lists variables for which cross products are to be computed, variables
+that can be interactively added to the model, or variables to
+be used in scatter plots.
+WEIGHT declares a variable to weight observations.
